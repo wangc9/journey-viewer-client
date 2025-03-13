@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -9,78 +9,87 @@ import {
   navigationMenuTriggerStyle,
 } from "./ui/navigation-menu";
 import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 export default function AppBar() {
   const pathname = usePathname();
+  const t = useTranslations("AppBar");
 
+  console.log(pathname);
   return (
     <NavigationMenu className="w-screen px-8 py-2 sm:px-8 h-6 flex justify-between bg-amber-300">
       <NavigationMenuList>
-        <NavigationMenuItem>
-          <Link href="/" legacyBehavior passHref>
-            <NavigationMenuLink
-              className={navigationMenuTriggerStyle() + "bg-amber-300"}
-            >
+        <NavigationMenuItem className="cursor-pointer">
+          <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+            <Link href="/" legacyBehavior passHref>
               <p
                 className={`${
                   pathname.includes("/admin/")
                     ? ""
-                    : "underline underline-offset-2"
-                } font-semibold`}
+                    : "underline underline-offset-2 decoration-2"
+                } font-semibold cursor-pointer`}
               >
-                Individual
+                {t("individual")}
               </p>
-            </NavigationMenuLink>
-          </Link>
+            </Link>
+          </NavigationMenuLink>
         </NavigationMenuItem>
-        <NavigationMenuItem>
-          <Link href="/admin" legacyBehavior passHref>
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+        <NavigationMenuItem className="cursor-pointer">
+          <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+            <Link href="/admin" legacyBehavior passHref>
               <p
                 className={`${
                   pathname.includes("/admin/")
-                    ? "underline underline-offset-2"
+                    ? "underline underline-offset-2 decoration-2"
                     : ""
                 } font-semibold`}
               >
-                Admin
+                {t("admin")}
               </p>
-            </NavigationMenuLink>
-          </Link>
+            </Link>
+          </NavigationMenuLink>
         </NavigationMenuItem>
       </NavigationMenuList>
       <NavigationMenuList>
-        <NavigationMenuItem>
-          <Link href="/" legacyBehavior passHref>
-            <NavigationMenuLink
-              className={navigationMenuTriggerStyle() + "bg-amber-300"}
+        <NavigationMenuItem className="cursor-pointer">
+          <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+            <Link
+              href={pathname.length <= 3 ? "/" : pathname.slice(3)}
+              locale="en"
+              legacyBehavior
+              passHref
             >
               <p
                 className={`${
-                  pathname.includes("/fi/")
+                  pathname.includes("/fi")
                     ? ""
-                    : "underline underline-offset-2"
+                    : "underline underline-offset-2 decoration-2"
                 } font-semibold`}
               >
                 EN
               </p>
-            </NavigationMenuLink>
-          </Link>
+            </Link>
+          </NavigationMenuLink>
         </NavigationMenuItem>
-        <NavigationMenuItem>
-          <Link href="/admin" legacyBehavior passHref>
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+        <NavigationMenuItem className="cursor-pointer">
+          <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+            <Link
+              href={pathname.length <= 3 ? "/" : pathname.slice(3)}
+              locale="fi"
+              legacyBehavior
+              passHref
+            >
               <p
                 className={`${
-                  pathname.includes("/fi/")
-                    ? "underline underline-offset-2"
+                  pathname.includes("/fi")
+                    ? "underline underline-offset-2 decoration-2"
                     : ""
                 } font-semibold`}
               >
                 FI
               </p>
-            </NavigationMenuLink>
-          </Link>
+            </Link>
+          </NavigationMenuLink>
         </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>
