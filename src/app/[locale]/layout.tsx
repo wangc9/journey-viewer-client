@@ -6,6 +6,7 @@ import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { routing } from "@/i18n/routing";
 import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
+import Providers from "../providers";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -44,8 +45,10 @@ export default async function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col items-stretch`}
       >
         <NextIntlClientProvider>
-          <AppBar />
-          {children}
+          <Providers>
+            <AppBar />
+            {children}
+          </Providers>
         </NextIntlClientProvider>
       </body>
     </html>

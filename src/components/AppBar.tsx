@@ -17,7 +17,7 @@ export default function AppBar() {
 
   console.log(pathname);
   return (
-    <NavigationMenu className="w-screen px-8 py-2 sm:px-8 h-6 flex justify-between bg-amber-300">
+    <NavigationMenu className="w-screen px-8 py-2 sm:px-8 h-[5%] flex justify-between bg-amber-300">
       <NavigationMenuList>
         <NavigationMenuItem className="cursor-pointer">
           <NavigationMenuLink className={navigationMenuTriggerStyle()}>
