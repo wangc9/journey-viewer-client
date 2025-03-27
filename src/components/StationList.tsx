@@ -1,12 +1,24 @@
+import { useMapContext } from "@/context/MapContext";
 import { Table, TableBody, TableCell, TableRow } from "./ui/table";
 
 export default function StationList({ stations }: { stations: StationsList }) {
+  const { setCoordinate } = useMapContext();
   return (
     <Table>
       <TableBody>
         {stations.map((station) => (
           <TableRow key={station.id}>
-            <TableCell className="flex flex-col gap-y-1">
+            <TableCell
+              className="flex flex-col gap-y-1"
+              onClick={() => {
+                setCoordinate(() => {
+                  return {
+                    lat: station.coordinateY ?? null,
+                    lng: station.coordinateX ?? null,
+                  };
+                });
+              }}
+            >
               <span className="font-medium text-lg">
                 {station.stationName ?? ""}
               </span>
