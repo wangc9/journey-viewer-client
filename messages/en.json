@@ -2,5 +2,8 @@
   "AppBar": {
     "individual": "Individual",
     "admin": "Admin"
+  },
+  "StationList": {
+    "stations": "Stations"
   }
 }

@@ -1,6 +1,15 @@
 import { useMapContext } from "@/context/MapContext";
 import { Table, TableBody, TableCell, TableRow } from "./ui/table";
-import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from "./ui/drawer";
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "./ui/drawer";
 import { useRef, useState } from "react";
 
 export default function StationList({ stations }: { stations: StationsList }) {
@@ -9,7 +18,7 @@ export default function StationList({ stations }: { stations: StationsList }) {
   const [selectedStation, setSelectedStation] = useState<Station | null>(null);
 
   return (
-    <>
+    <section className="h-[70dvh] overflow-y-scroll overflow-x-hidden">
       <Table>
         <TableBody>
           {stations.map((station) => (
@@ -42,8 +51,10 @@ export default function StationList({ stations }: { stations: StationsList }) {
         <DrawerTrigger ref={triggerRef} className="hidden" />
         <DrawerContent>
           <DrawerHeader>
-            <DrawerTitle>{selectedStation?.stationName ?? ''}</DrawerTitle>
-            <DrawerDescription>{selectedStation?.stationAddress ?? ''}</DrawerDescription>
+            <DrawerTitle>{selectedStation?.stationName ?? ""}</DrawerTitle>
+            <DrawerDescription>
+              {selectedStation?.stationAddress ?? ""}
+            </DrawerDescription>
           </DrawerHeader>
           <DrawerFooter>
             <DrawerClose asChild>
@@ -52,7 +63,6 @@ export default function StationList({ stations }: { stations: StationsList }) {
           </DrawerFooter>
         </DrawerContent>
       </Drawer>
-    </>
-    
+    </section>
   );
 }

@@ -45,3 +45,53 @@ export const stationsOptions = ({
     },
   });
 };
+
+export const stationOptions = ({ id }: { id: number }) => {
+  return queryOptions({
+    queryKey: ["station", { id }],
+    queryFn: async () => {
+      try {
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_API_URL}/stations/${id}`
+        );
+        const data:
+          | {
+              station_name: string;
+              station_address: string;
+              start_count: number;
+              return_count: string;
+              start_average: number;
+              return_average: number;
+            }
+          | {
+              status: number;
+              error: string;
+              message: string;
+              code: string;
+              timestamp: string;
+              path: string;
+            } = await res.json();
+        return data;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+  });
+};
+
+export const countStationOptions = queryOptions({
+  queryKey: ["countStation"],
+  queryFn: async () => {
+    try {
+      const result = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/stations/count`
+      );
+
+      const data: { count: number } = await result.json();
+
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  },
+});
