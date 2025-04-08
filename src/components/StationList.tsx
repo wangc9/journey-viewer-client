@@ -10,12 +10,18 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "./ui/drawer";
-import { useRef, useState } from "react";
+import { RefObject } from "react";
+import { StationsList } from "@/types/stations";
 
-export default function StationList({ stations }: { stations: StationsList }) {
-  const { setCoordinate } = useMapContext();
-  const triggerRef = useRef<HTMLButtonElement>(null);
-  const [selectedStation, setSelectedStation] = useState<Station | null>(null);
+export default function StationList({
+  stations,
+  triggerRef,
+}: {
+  stations: StationsList;
+  triggerRef: RefObject<HTMLButtonElement | null>;
+}) {
+  const { setCoordinate, selectedStation, setSelectedStation } =
+    useMapContext();
 
   return (
     <section className="h-[70dvh] overflow-y-scroll overflow-x-hidden">

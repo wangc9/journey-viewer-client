@@ -1,5 +1,6 @@
 "use client";
 
+import { Station } from "@/types/stations";
 import {
   createContext,
   Dispatch,
@@ -15,6 +16,8 @@ type MapContextType = {
     lng: string | null;
   };
   setCoordinate: Dispatch<SetStateAction<MapContextType["coordinate"]>>;
+  selectedStation: Station | null;
+  setSelectedStation: Dispatch<SetStateAction<Station | null>>;
 };
 
 const MapContext = createContext<MapContextType | undefined>(undefined);
@@ -24,9 +27,14 @@ export function MapProvider({ children }: { children: ReactNode }) {
     lat: null,
     lng: null,
   });
+  const [selectedStation, setSelectedStation] = useState<Station | null>(null);
 
   return (
-    <MapContext value={{ coordinate, setCoordinate }}>{children}</MapContext>
+    <MapContext
+      value={{ coordinate, setCoordinate, selectedStation, setSelectedStation }}
+    >
+      {children}
+    </MapContext>
   );
 }
 

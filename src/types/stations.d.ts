@@ -1,3 +1,5 @@
+import { RefObject } from "react";
+
 type StationsQueryInput = {
   take?: number;
   skip?: number;
@@ -7,6 +9,7 @@ type StationsQueryInput = {
   x?: "ASC" | "DESC";
   y?: "ASC" | "DESC";
   search?: string;
+  triggerRef: RefObject<HTMLButtonElement | null>;
 };
 
 type Station = {
@@ -18,3 +21,7 @@ type Station = {
 };
 
 type StationsList = Array<Station>;
+
+type StationCardProps = {
+  stationId: number;
+};

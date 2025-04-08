@@ -1,23 +1,24 @@
+import { StationsQueryInput } from "@/types/stations";
 import { queryOptions } from "@tanstack/react-query";
 
 export const stationsOptions = ({
   skip = 0,
-  take = 10,
+  take,
   id = "ASC",
   name = "ASC",
   address = "ASC",
   x = "ASC",
   y = "ASC",
   search,
-}: StationsQueryInput) => {
+}: Omit<StationsQueryInput, "triggerRef">) => {
   return queryOptions({
     queryKey: ["stations", { skip, take, id, name, address, x, y, search }],
     queryFn: async () => {
       try {
         const res = await fetch(
-          `${
-            process.env.NEXT_PUBLIC_API_URL
-          }/stations?skip=${skip}&take=${take}&id=${id}&name=${name}&address=${address}&x=${x}&y=${y}${
+          `${process.env.NEXT_PUBLIC_API_URL}/stations?skip=${skip}${
+            take ? `&take=${take}` : ""
+          }&id=${id}&name=${name}&address=${address}&x=${x}&y=${y}${
             search ? `&search=${search}` : ""
           }`
         );
