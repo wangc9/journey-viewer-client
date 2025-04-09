@@ -4,11 +4,11 @@ import { queryOptions } from "@tanstack/react-query";
 export const stationsOptions = ({
   skip = 0,
   take,
-  id = "ASC",
-  name = "ASC",
-  address = "ASC",
-  x = "ASC",
-  y = "ASC",
+  id,
+  name,
+  address,
+  x,
+  y,
   search,
 }: Omit<StationsQueryInput, "triggerRef">) => {
   return queryOptions({
@@ -18,7 +18,9 @@ export const stationsOptions = ({
         const res = await fetch(
           `${process.env.NEXT_PUBLIC_API_URL}/stations?skip=${skip}${
             take ? `&take=${take}` : ""
-          }&id=${id}&name=${name}&address=${address}&x=${x}&y=${y}${
+          }${id ? `&id=${id}` : ""}${name ? `&name=${name}` : ""}${
+            address ? `&address=${address}` : ""
+          }${x ? `&x=${x}` : ""}${y ? `&y=${y}` : ""}${
             search ? `&search=${search}` : ""
           }`
         );

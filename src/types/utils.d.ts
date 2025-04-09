@@ -10,3 +10,5 @@ type NumberCardProps = {
   title: string;
   value: string;
 };
+
+type Order = "ASC" | "DESC";

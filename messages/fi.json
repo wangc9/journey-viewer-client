@@ -11,5 +11,15 @@
     "end_count": "Matkoja lopetettu",
     "start_average": "Keskimääräinen aloitusetäisyys täältä",
     "end_average": "Keskimääräinen lopetusetäisyys täällä"
+  },
+  "StationDropDown": {
+    "order": "Järjestä mukaan",
+    "id": "Aseman tunnus",
+    "name": "Aseman nimi",
+    "address": "Aseman osoite",
+    "latitude": "Aseman leveysaste",
+    "longitude": "Aseman pituusaste",
+    "assending": "Nouseva",
+    "descending": "Laskeva"
   }
 }
