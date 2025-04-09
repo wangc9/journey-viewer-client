@@ -5,5 +5,11 @@
   },
   "StationList": {
     "stations": "Stations"
+  },
+  "StationCard": {
+    "start_count": "Journeys started",
+    "end_count": "Journeys ended",
+    "start_average": "Average distance started from here",
+    "end_average": "Average distance ended here"
   }
 }

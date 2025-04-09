@@ -5,5 +5,11 @@
   },
   "StationList": {
     "stations": "Asemat"
+  },
+  "StationCard": {
+    "start_count": "Matkoja aloitettu",
+    "end_count": "Matkoja lopetettu",
+    "start_average": "Keskimääräinen aloitusetäisyys täältä",
+    "end_average": "Keskimääräinen lopetusetäisyys täällä"
   }
 }

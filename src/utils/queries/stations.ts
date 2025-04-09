@@ -59,10 +59,10 @@ export const stationOptions = ({ id }: { id: number }) => {
           | {
               station_name: string;
               station_address: string;
-              start_count: number;
+              start_count: string;
               return_count: string;
-              start_average: number;
-              return_average: number;
+              start_average: string;
+              return_average: string;
             }
           | {
               status: number;

@@ -12,6 +12,7 @@ import {
 } from "./ui/drawer";
 import { RefObject } from "react";
 import { StationsList } from "@/types/stations";
+import StationCard from "./StationCard";
 
 export default function StationList({
   stations,
@@ -30,7 +31,7 @@ export default function StationList({
           {stations.map((station) => (
             <TableRow key={station.id}>
               <TableCell
-                className="flex flex-col gap-y-1"
+                className="flex flex-col gap-y-1 cursor-pointer"
                 onClick={() => {
                   setCoordinate(() => {
                     return {
@@ -55,15 +56,16 @@ export default function StationList({
       </Table>
       <Drawer direction="left">
         <DrawerTrigger ref={triggerRef} className="hidden" />
-        <DrawerContent>
+        <DrawerContent style={{ minWidth: "33.3%", overflowY: "auto" }}>
           <DrawerHeader>
             <DrawerTitle>{selectedStation?.stationName ?? ""}</DrawerTitle>
             <DrawerDescription>
               {selectedStation?.stationAddress ?? ""}
             </DrawerDescription>
           </DrawerHeader>
+          <StationCard stationId={selectedStation?.id ?? 0} />
           <DrawerFooter>
-            <DrawerClose asChild>
+            <DrawerClose asChild className="cursor-pointer">
               <button className="btn btn-primary">Close</button>
             </DrawerClose>
           </DrawerFooter>

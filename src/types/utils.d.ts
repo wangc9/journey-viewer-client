@@ -5,3 +5,8 @@ type PaginationProps = {
   setCurrentPage: Dispatch<SetStateAction<number>>;
   totalPages: number;
 };
+
+type NumberCardProps = {
+  title: string;
+  value: string;
+};
