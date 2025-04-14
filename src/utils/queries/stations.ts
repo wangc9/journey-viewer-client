@@ -1,4 +1,5 @@
-import { StationsQueryInput } from "@/types/stations";
+import { StationsList, StationsQueryInput } from "@/types/stations";
+import { CustomError } from "@/types/utils";
 import { queryOptions } from "@tanstack/react-query";
 
 export const stationsOptions = ({
@@ -24,22 +25,7 @@ export const stationsOptions = ({
             search ? `&search=${search}` : ""
           }`
         );
-        const data:
-          | Array<{
-              id: number;
-              stationName?: string;
-              stationAddress?: string;
-              coordinateX?: string;
-              coordinateY?: string;
-            }>
-          | {
-              status: number;
-              error: string;
-              message: string;
-              code: string;
-              timestamp: string;
-              path: string;
-            } = await res.json();
+        const data: StationsList | CustomError = await res.json();
         return data;
       } catch (error) {
         console.log(error);
@@ -66,14 +52,7 @@ export const stationOptions = ({ id }: { id: number }) => {
               start_average: string;
               return_average: string;
             }
-          | {
-              status: number;
-              error: string;
-              message: string;
-              code: string;
-              timestamp: string;
-              path: string;
-            } = await res.json();
+          | CustomError = await res.json();
         return data;
       } catch (error) {
         console.log(error);
