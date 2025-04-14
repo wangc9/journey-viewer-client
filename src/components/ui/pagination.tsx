@@ -75,7 +75,7 @@ function PaginationButton({
   children,
   className,
   isActive,
-  size = "icon",
+  size = "numberFit",
   ...props
 }: PaginationButtonProps) {
   return (

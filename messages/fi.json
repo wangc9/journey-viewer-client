@@ -21,5 +21,8 @@
     "longitude": "Aseman pituusaste",
     "assending": "Nouseva",
     "descending": "Laskeva"
+  },
+  "JourneyList": {
+    "journeys": "Matkat"
   }
 }

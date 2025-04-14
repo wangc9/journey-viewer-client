@@ -1,8 +1,10 @@
 "use client";
 
+import JourneyListPage from "@/components/JourneyListPage";
 import StationListPage from "@/components/StationListPage";
+import { Button } from "@/components/ui/button";
 import dynamic from "next/dynamic";
-import { useMemo, useRef } from "react";
+import { useMemo, useRef, useState } from "react";
 
 export default function Home() {
   const Map = useMemo(
@@ -10,10 +12,38 @@ export default function Home() {
     []
   );
   const triggerRef = useRef<HTMLButtonElement>(null);
+  const [showStations, setShowStations] = useState<boolean>(true);
 
   return (
     <main className="grid grid-cols-[1fr_2fr]">
-      <StationListPage triggerRef={triggerRef} />
+      <section className="flex flex-col gap-y-2">
+        <article className="grid grid-cols-2 gap-x-2">
+          <Button
+            className={`${
+              showStations
+                ? "bg-accent text-accent-foreground hover:text-white"
+                : ""
+            }`}
+            onClick={() => setShowStations(true)}
+          >
+            Stations
+          </Button>
+          <Button
+            className={`${
+              !showStations ? "bg-accent text-accent-foreground" : ""
+            }`}
+            onClick={() => setShowStations(false)}
+          >
+            Journeys
+          </Button>
+        </article>
+        {showStations ? (
+          <StationListPage triggerRef={triggerRef} />
+        ) : (
+          <JourneyListPage triggerRef={triggerRef} />
+        )}
+        {/* <StationListPage triggerRef={triggerRef} /> */}
+      </section>
       <Map triggerRef={triggerRef} />
     </main>
   );

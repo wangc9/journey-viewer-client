@@ -28,6 +28,10 @@ type MapContextType = {
   setX: Dispatch<SetStateAction<string | undefined>>;
   y: string | undefined;
   setY: Dispatch<SetStateAction<string | undefined>>;
+  dTime: string | undefined;
+  setDTime: Dispatch<SetStateAction<string | undefined>>;
+  rTime: string | undefined;
+  setRTime: Dispatch<SetStateAction<string | undefined>>;
 };
 
 const MapContext = createContext<MapContextType | undefined>(undefined);
@@ -43,6 +47,8 @@ export function MapProvider({ children }: { children: ReactNode }) {
   const [address, setAddress] = useState<string | undefined>();
   const [x, setX] = useState<string | undefined>();
   const [y, setY] = useState<string | undefined>();
+  const [dTime, setDTime] = useState<string | undefined>();
+  const [rTime, setRTime] = useState<string | undefined>();
 
   return (
     <MapContext
@@ -61,6 +67,10 @@ export function MapProvider({ children }: { children: ReactNode }) {
         setX,
         y,
         setY,
+        dTime,
+        setDTime,
+        rTime,
+        setRTime,
       }}
     >
       {children}

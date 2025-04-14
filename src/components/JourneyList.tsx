@@ -1,53 +1,62 @@
-import { useMapContext } from "@/context/MapContext";
+// import { useMapContext } from "@/context/MapContext";
 import { Table, TableBody, TableCell, TableRow } from "./ui/table";
 import {
   Drawer,
   DrawerClose,
   DrawerContent,
-  DrawerDescription,
+  // DrawerDescription,
   DrawerFooter,
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
 } from "./ui/drawer";
 import { RefObject } from "react";
-import { StationsList } from "@/types/stations";
-import StationCard from "./StationCard";
+// import StationCard from "./StationCard";
+import { JourneysList } from "@/types/journeys";
 
-export default function StationList({
-  stations,
+export default function JourneyList({
+  journeys,
   triggerRef,
 }: {
-  stations: StationsList;
+  journeys: JourneysList;
   triggerRef: RefObject<HTMLButtonElement | null>;
 }) {
-  const { setCoordinate, selectedStation, setSelectedStation } =
-    useMapContext();
-
   return (
     <section className="h-[65dvh] overflow-y-scroll overflow-x-hidden">
       <Table>
         <TableBody>
-          {stations.map((station) => (
-            <TableRow key={station.id}>
+          {journeys.map((journey) => (
+            <TableRow key={journey.id}>
               <TableCell
                 className="flex flex-col gap-y-1 cursor-pointer"
                 onClick={() => {
-                  setCoordinate(() => {
-                    return {
-                      lat: station.coordinateY ?? null,
-                      lng: station.coordinateX ?? null,
-                    };
-                  });
-                  setSelectedStation(station);
+                  // setCoordinate(() => {
+                  //   return {
+                  //     lat: station.coordinateY ?? null,
+                  //     lng: station.coordinateX ?? null,
+                  //   };
+                  // });
+                  // setSelectedStation(station);
                   triggerRef.current?.click();
                 }}
               >
                 <span className="font-medium text-lg">
-                  {station.stationName ?? ""}
+                  {journey.departureStationId
+                    ? journey.departureStationId.stationName
+                    : ""}
+                  {" -> "}
+                  {journey.returnStationId
+                    ? journey.returnStationId.stationName
+                    : ""}
                 </span>
                 <span className="font-light text-gray-600">
-                  {station.stationAddress ?? ""}
+                  {journey.departureDateTime
+                    ? new Date(journey.departureDateTime).toLocaleString()
+                    : ""}
+                  {" -> "}
+                  {journey.returnDateTime
+                    ? new Date(journey.returnDateTime).toLocaleString()
+                    : ""}
                 </span>
               </TableCell>
             </TableRow>
@@ -58,12 +67,13 @@ export default function StationList({
         <DrawerTrigger ref={triggerRef} className="hidden" />
         <DrawerContent style={{ minWidth: "33.3%", overflowY: "auto" }}>
           <DrawerHeader>
-            <DrawerTitle>{selectedStation?.stationName ?? ""}</DrawerTitle>
+            <DrawerTitle>Journey</DrawerTitle>
+            {/* <DrawerTitle>{selectedStation?.stationName ?? ""}</DrawerTitle>
             <DrawerDescription>
               {selectedStation?.stationAddress ?? ""}
-            </DrawerDescription>
+            </DrawerDescription> */}
           </DrawerHeader>
-          <StationCard stationId={selectedStation?.id ?? 0} />
+          {/* <StationCard stationId={selectedStation?.id ?? 0} /> */}
           <DrawerFooter>
             <DrawerClose asChild className="cursor-pointer">
               <button className="btn btn-primary">Close</button>

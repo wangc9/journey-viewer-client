@@ -12,3 +12,12 @@ type NumberCardProps = {
 };
 
 type Order = "ASC" | "DESC";
+
+type CustomError = {
+  status: number;
+  error: string;
+  message: string;
+  code: string;
+  timestamp: string;
+  path: string;
+};

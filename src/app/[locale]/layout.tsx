@@ -42,7 +42,7 @@ export default async function RootLayout({
   return (
     <html lang={locale}>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col items-stretch`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col items-stretch overflow-hidden`}
       >
         <NextIntlClientProvider>
           <Providers>
