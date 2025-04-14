@@ -1,3 +1,4 @@
+import { ReactScan } from "@/components/ReactScan";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "../globals.css";
@@ -41,6 +42,7 @@ export default async function RootLayout({
   setRequestLocale(locale);
   return (
     <html lang={locale}>
+      <ReactScan />
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col items-stretch overflow-hidden`}
       >
