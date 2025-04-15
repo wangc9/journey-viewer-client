@@ -12,13 +12,18 @@
     "start_average": "Average distance started from here",
     "end_average": "Average distance ended here"
   },
-  "StationDropDown": {
+  "DropDown": {
     "order": "Order by",
     "id": "Station ID",
     "name": "Station name",
     "address": "Station address",
     "latitude": "Station latitude",
     "longitude": "Station longitude",
+    "journey_id": "Journey ID",
+    "dTime": "Departure time",
+    "rTime": "Return time",
+    "distance": "Distance",
+    "duration": "Duration",
     "assending": "Assending",
     "descending": "Descending"
   },

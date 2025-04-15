@@ -1,6 +1,5 @@
 "use client";
 
-// import useStationFilter from "@/hooks/useFilter";
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -13,10 +12,20 @@ import { DropdownMenuContent } from "@radix-ui/react-dropdown-menu";
 import { useMapContext } from "@/context/MapContext";
 import { useTranslations } from "next-intl";
 
-export default function StationDropDown() {
+export default function JourneyDropDown() {
   const t = useTranslations("DropDown");
-  const { id, name, address, x, y, setId, setName, setAddress, setX, setY } =
-    useMapContext();
+  const {
+    id,
+    rTime,
+    dTime,
+    distance,
+    duration,
+    setId,
+    setRTime,
+    setDTime,
+    setDistance,
+    setDuration,
+  } = useMapContext();
 
   return (
     <DropdownMenu>
@@ -26,7 +35,7 @@ export default function StationDropDown() {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-full sm:w-56 bg-white z-50 overflow-y-auto overflow-x-hidden">
-        <DropdownMenuLabel>{t("id")}</DropdownMenuLabel>
+        <DropdownMenuLabel>{t("journey_id")}</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuCheckboxItem
           checked={id === "ASC"}
@@ -65,20 +74,20 @@ export default function StationDropDown() {
           {t("descending")}
         </DropdownMenuCheckboxItem>
 
-        <DropdownMenuLabel>{t("name")}</DropdownMenuLabel>
+        <DropdownMenuLabel>{t("rTime")}</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuCheckboxItem
-          checked={name === "ASC"}
+          checked={rTime === "ASC"}
           onCheckedChange={() => {
-            switch (name) {
+            switch (rTime) {
               case "ASC":
-                setName(undefined);
+                setRTime(undefined);
                 break;
               case "DESC":
-                setName("ASC");
+                setRTime("ASC");
                 break;
               default:
-                setName("ASC");
+                setRTime("ASC");
                 break;
             }
           }}
@@ -86,17 +95,17 @@ export default function StationDropDown() {
           {t("assending")}
         </DropdownMenuCheckboxItem>
         <DropdownMenuCheckboxItem
-          checked={name === "DESC"}
+          checked={rTime === "DESC"}
           onCheckedChange={() => {
-            switch (name) {
+            switch (rTime) {
               case "ASC":
-                setName("DESC");
+                setRTime("DESC");
                 break;
               case "DESC":
-                setName(undefined);
+                setRTime(undefined);
                 break;
               default:
-                setName("DESC");
+                setRTime("DESC");
                 break;
             }
           }}
@@ -104,20 +113,20 @@ export default function StationDropDown() {
           {t("descending")}
         </DropdownMenuCheckboxItem>
 
-        <DropdownMenuLabel>{t("address")}</DropdownMenuLabel>
+        <DropdownMenuLabel>{t("dTime")}</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuCheckboxItem
-          checked={address === "ASC"}
+          checked={dTime === "ASC"}
           onCheckedChange={() => {
-            switch (address) {
+            switch (dTime) {
               case "ASC":
-                setAddress(undefined);
+                setDTime(undefined);
                 break;
               case "DESC":
-                setAddress("ASC");
+                setDTime("ASC");
                 break;
               default:
-                setAddress("ASC");
+                setDTime("ASC");
                 break;
             }
           }}
@@ -125,17 +134,17 @@ export default function StationDropDown() {
           {t("assending")}
         </DropdownMenuCheckboxItem>
         <DropdownMenuCheckboxItem
-          checked={address === "DESC"}
+          checked={dTime === "DESC"}
           onCheckedChange={() => {
-            switch (address) {
+            switch (dTime) {
               case "ASC":
-                setAddress("DESC");
+                setDTime("DESC");
                 break;
               case "DESC":
-                setAddress(undefined);
+                setDTime(undefined);
                 break;
               default:
-                setAddress("DESC");
+                setDTime("DESC");
                 break;
             }
           }}
@@ -143,20 +152,20 @@ export default function StationDropDown() {
           {t("descending")}
         </DropdownMenuCheckboxItem>
 
-        <DropdownMenuLabel>{t("latitude")}</DropdownMenuLabel>
+        <DropdownMenuLabel>{t("distance")}</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuCheckboxItem
-          checked={x === "ASC"}
+          checked={distance === "ASC"}
           onCheckedChange={() => {
-            switch (x) {
+            switch (distance) {
               case "ASC":
-                setX(undefined);
+                setDistance(undefined);
                 break;
               case "DESC":
-                setX("ASC");
+                setDistance("ASC");
                 break;
               default:
-                setX("ASC");
+                setDistance("ASC");
                 break;
             }
           }}
@@ -164,17 +173,17 @@ export default function StationDropDown() {
           {t("assending")}
         </DropdownMenuCheckboxItem>
         <DropdownMenuCheckboxItem
-          checked={x === "DESC"}
+          checked={distance === "DESC"}
           onCheckedChange={() => {
-            switch (x) {
+            switch (distance) {
               case "ASC":
-                setX("DESC");
+                setDistance("DESC");
                 break;
               case "DESC":
-                setX(undefined);
+                setDistance(undefined);
                 break;
               default:
-                setX("DESC");
+                setDistance("DESC");
                 break;
             }
           }}
@@ -182,20 +191,20 @@ export default function StationDropDown() {
           {t("descending")}
         </DropdownMenuCheckboxItem>
 
-        <DropdownMenuLabel>{t("longitude")}</DropdownMenuLabel>
+        <DropdownMenuLabel>{t("duration")}</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuCheckboxItem
-          checked={y === "ASC"}
+          checked={duration === "ASC"}
           onCheckedChange={() => {
-            switch (y) {
+            switch (duration) {
               case "ASC":
-                setY(undefined);
+                setDuration(undefined);
                 break;
               case "DESC":
-                setY("ASC");
+                setDuration("ASC");
                 break;
               default:
-                setY("ASC");
+                setDuration("ASC");
                 break;
             }
           }}
@@ -203,17 +212,17 @@ export default function StationDropDown() {
           {t("assending")}
         </DropdownMenuCheckboxItem>
         <DropdownMenuCheckboxItem
-          checked={y === "DESC"}
+          checked={duration === "DESC"}
           onCheckedChange={() => {
-            switch (y) {
+            switch (duration) {
               case "ASC":
-                setY("DESC");
+                setDuration("DESC");
                 break;
               case "DESC":
-                setY(undefined);
+                setDuration(undefined);
                 break;
               default:
-                setY("DESC");
+                setDuration("DESC");
                 break;
             }
           }}

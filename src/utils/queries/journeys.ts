@@ -8,10 +8,15 @@ export const journeysOptions = ({
   id,
   dTime,
   rTime,
+  distance,
+  duration,
   search,
 }: Omit<JourneysQueryInput, "triggerRef">) => {
   return queryOptions({
-    queryKey: ["journeys", { skip, take, id, dTime, rTime, search }],
+    queryKey: [
+      "journeys",
+      { skip, take, id, dTime, rTime, distance, duration, search },
+    ],
     queryFn: async () => {
       try {
         const res = await fetch(
@@ -19,6 +24,8 @@ export const journeysOptions = ({
             take ? `&take=${take}` : ""
           }${id ? `&id=${id}` : ""}${dTime ? `&dTime=${dTime}` : ""}${
             rTime ? `&rTime=${rTime}` : ""
+          }${distance ? `&distance=${distance}` : ""}${
+            duration ? `&duration=${duration}` : ""
           }${search ? `&search=${search}` : ""}`
         );
         const data: JourneysList | CustomError = await res.json();

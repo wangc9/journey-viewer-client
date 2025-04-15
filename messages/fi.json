@@ -12,13 +12,18 @@
     "start_average": "Keskimääräinen aloitusetäisyys täältä",
     "end_average": "Keskimääräinen lopetusetäisyys täällä"
   },
-  "StationDropDown": {
+  "DropDown": {
     "order": "Järjestä mukaan",
     "id": "Aseman tunnus",
     "name": "Aseman nimi",
     "address": "Aseman osoite",
     "latitude": "Aseman leveysaste",
     "longitude": "Aseman pituusaste",
+    "journey_id": "Matkan tunnus",
+    "dTime": "Lähtöaika",
+    "rTime": "Paluuaika",
+    "distance": "Etäisyys",
+    "duration": "Kesto",
     "assending": "Nouseva",
     "descending": "Laskeva"
   },

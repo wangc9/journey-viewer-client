@@ -7,6 +7,8 @@ type JourneysQueryInput = {
   id?: "ASC" | "DESC";
   dTime?: "ASC" | "DESC";
   rTime?: "ASC" | "DESC";
+  distance?: "ASC" | "DESC";
+  duration?: "ASC" | "DESC";
   search?: string;
   triggerRef: RefObject<HTMLButtonElement | null>;
 };

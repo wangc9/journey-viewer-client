@@ -32,6 +32,10 @@ type MapContextType = {
   setDTime: Dispatch<SetStateAction<string | undefined>>;
   rTime: string | undefined;
   setRTime: Dispatch<SetStateAction<string | undefined>>;
+  distance: string | undefined;
+  setDistance: Dispatch<SetStateAction<string | undefined>>;
+  duration: string | undefined;
+  setDuration: Dispatch<SetStateAction<string | undefined>>;
 };
 
 const MapContext = createContext<MapContextType | undefined>(undefined);
@@ -49,6 +53,8 @@ export function MapProvider({ children }: { children: ReactNode }) {
   const [y, setY] = useState<string | undefined>();
   const [dTime, setDTime] = useState<string | undefined>();
   const [rTime, setRTime] = useState<string | undefined>();
+  const [distance, setDistance] = useState<string | undefined>();
+  const [duration, setDuration] = useState<string | undefined>();
 
   return (
     <MapContext
@@ -71,6 +77,10 @@ export function MapProvider({ children }: { children: ReactNode }) {
         setDTime,
         rTime,
         setRTime,
+        distance,
+        setDistance,
+        duration,
+        setDuration,
       }}
     >
       {children}
