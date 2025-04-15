@@ -26,5 +26,14 @@ type Journey = {
 type JourneysList = Array<Journey>;
 
 type JourneyCardProps = {
-  journeyId: number;
+  journey?: Journey;
+};
+
+type StationInfoCardProps = {
+  variant: "departure" | "return";
+  name: string;
+  address: string;
+  x: string;
+  y: string;
+  time: Date;
 };
