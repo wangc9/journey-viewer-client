@@ -25,3 +25,20 @@ type StationsList = Array<Station>;
 type StationCardProps = {
   stationId: number;
 };
+
+type DestinationsQueryInput = {
+  take?: number;
+  skip?: number;
+  id: number;
+  startDate?: string;
+  endDate?: string;
+};
+
+type StationWithCount = {
+  id: number;
+  station_name?: string;
+  station_address?: string;
+  coordinate_x?: string;
+  coordinate_y?: string;
+  journey_count: number;
+};

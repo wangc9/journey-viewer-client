@@ -1,4 +1,9 @@
-import { StationsList, StationsQueryInput } from "@/types/stations";
+import {
+  DestinationsQueryInput,
+  StationsList,
+  StationsQueryInput,
+  StationWithCount,
+} from "@/types/stations";
 import { CustomError } from "@/types/utils";
 import { queryOptions } from "@tanstack/react-query";
 
@@ -77,3 +82,33 @@ export const countStationOptions = queryOptions({
     }
   },
 });
+
+export const destinationsOptions = ({
+  skip = 0,
+  take,
+  id,
+  startDate,
+  endDate,
+}: DestinationsQueryInput) => {
+  return queryOptions({
+    queryKey: ["station:destinations", { skip, take, id, startDate, endDate }],
+    queryFn: async () => {
+      try {
+        const res = await fetch(
+          `${
+            process.env.NEXT_PUBLIC_API_URL
+          }/stations/${id}/destinations?skip=${skip}${
+            take ? `&take=${take}` : ""
+          }${startDate ? `&startDate=${startDate}` : ""}${
+            endDate ? `&endDate=${endDate}` : ""
+          }`
+        );
+        const data: Array<StationWithCount> | CustomError = await res.json();
+        return data;
+      } catch (error) {
+        console.log(error);
+      }
+      return { error: "error" };
+    },
+  });
+};

@@ -1,29 +1,84 @@
 "use client";
 
 import { StationCardProps } from "@/types/stations";
-import { stationOptions } from "@/utils/queries/stations";
-import { useSuspenseQuery } from "@tanstack/react-query";
+import { destinationsOptions, stationOptions } from "@/utils/queries/stations";
+import { useSuspenseQueries } from "@tanstack/react-query";
 import NumberCard from "./NumberCard";
 import { useTranslations } from "next-intl";
+import { Table, TableBody, TableCell, TableRow } from "./ui/table";
 
 export default function StationCard({ stationId }: StationCardProps) {
   const t = useTranslations("StationCard");
-  const queryOptions = stationOptions({ id: stationId });
-  const { data: station } = useSuspenseQuery(queryOptions);
+  const stationQueryOptions = stationOptions({ id: stationId });
+  const destinationQueryOptions = destinationsOptions({
+    id: stationId,
+    skip: 0,
+    take: 10,
+  });
+  const [stationQuery, destinationQuery] = useSuspenseQueries({
+    queries: [stationQueryOptions, destinationQueryOptions],
+  });
 
-  if (station !== undefined && "station_name" in station) {
+  if (stationQuery.data !== undefined && "station_name" in stationQuery.data) {
+    console.log(destinationQuery.data);
     return (
-      <section className="flex flex-col gap-y-2 lg:grid lg:grid-cols-2 lg:gap-x-4 px-4">
-        <NumberCard title={t("start_count")} value={station.start_count} />
-        <NumberCard title={t("end_count")} value={station.return_count} />
-        <NumberCard
-          title={t("start_average")}
-          value={parseFloat(station.start_average).toFixed(2)}
-        />
-        <NumberCard
-          title={t("start_average")}
-          value={parseFloat(station.return_average).toFixed(2)}
-        />
+      <section className="flex flex-col">
+        <section className="flex flex-col gap-y-2 lg:grid lg:grid-cols-2 lg:gap-x-4 px-4">
+          <NumberCard
+            title={t("start_count")}
+            value={stationQuery.data.start_count}
+          />
+          <NumberCard
+            title={t("end_count")}
+            value={stationQuery.data.return_count}
+          />
+          <NumberCard
+            title={t("start_average")}
+            value={parseFloat(stationQuery.data.start_average).toFixed(2)}
+          />
+          <NumberCard
+            title={t("start_average")}
+            value={parseFloat(stationQuery.data.return_average).toFixed(2)}
+          />
+        </section>
+        {destinationQuery.data !== undefined &&
+          !("error" in destinationQuery.data) && (
+            <section className="px-4">
+              <Table>
+                <TableBody>
+                  {destinationQuery.data.map((station) => (
+                    <TableRow key={station.id}>
+                      <TableCell
+                        className="grid grid-cols-2 cursor-pointer"
+                        // onClick={() => {
+                        //   setCoordinate(() => {
+                        //     return {
+                        //       lat: station.coordinateY ?? null,
+                        //       lng: station.coordinateX ?? null,
+                        //     };
+                        //   });
+                        //   setSelectedStation(station);
+                        //   triggerRef.current?.click();
+                        // }}
+                      >
+                        <article className="flex flex-col gap-y-1">
+                          <span className="font-medium text-lg">
+                            {station.station_name ?? ""}
+                          </span>
+                          <span className="font-light text-gray-600">
+                            {station.station_address ?? ""}
+                          </span>
+                        </article>
+                        <span className="font-semibold text-lg text-center self-center">
+                          {station.journey_count ?? ""}
+                        </span>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </section>
+          )}
       </section>
     );
   }
