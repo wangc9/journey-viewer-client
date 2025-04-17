@@ -1,17 +1,7 @@
 import { Table, TableBody, TableCell, TableRow } from "./ui/table";
-import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger,
-} from "./ui/drawer";
 import { RefObject } from "react";
 import { JourneysList } from "@/types/journeys";
 import { useMapContext } from "@/context/MapContext";
-import JourneyCard from "./JourneyCard";
 
 export default function JourneyList({
   journeys,
@@ -20,7 +10,11 @@ export default function JourneyList({
   journeys: JourneysList;
   triggerRef: RefObject<HTMLButtonElement | null>;
 }) {
-  const { selectedJourney, setSelectedJourney } = useMapContext();
+  const {
+    setSelectedJourney,
+    setSelectedDepartureStation,
+    setSelectedDestinationStation,
+  } = useMapContext();
 
   return (
     <section className="h-[65dvh] overflow-y-scroll overflow-x-hidden">
@@ -31,12 +25,8 @@ export default function JourneyList({
               <TableCell
                 className="flex flex-col gap-y-1 cursor-pointer"
                 onClick={() => {
-                  // setCoordinate(() => {
-                  //   return {
-                  //     lat: station.coordinateY ?? null,
-                  //     lng: station.coordinateX ?? null,
-                  //   };
-                  // });
+                  setSelectedDepartureStation(() => journey.departureStationId);
+                  setSelectedDestinationStation(() => journey.returnStationId);
                   setSelectedJourney(journey);
                   triggerRef.current?.click();
                 }}
@@ -64,20 +54,6 @@ export default function JourneyList({
           ))}
         </TableBody>
       </Table>
-      <Drawer direction="left">
-        <DrawerTrigger ref={triggerRef} className="hidden" />
-        <DrawerContent style={{ minWidth: "33.3%", overflowY: "auto" }}>
-          <DrawerHeader>
-            <DrawerTitle>Journey {selectedJourney?.id}</DrawerTitle>
-          </DrawerHeader>
-          <JourneyCard journey={selectedJourney ?? undefined} />
-          <DrawerFooter>
-            <DrawerClose asChild className="cursor-pointer">
-              <button className="btn btn-primary">Close</button>
-            </DrawerClose>
-          </DrawerFooter>
-        </DrawerContent>
-      </Drawer>
     </section>
   );
 }
