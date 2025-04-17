@@ -1,18 +1,7 @@
 import { useMapContext } from "@/context/MapContext";
 import { Table, TableBody, TableCell, TableRow } from "./ui/table";
-import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerDescription,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger,
-} from "./ui/drawer";
 import { RefObject } from "react";
 import { StationsList } from "@/types/stations";
-import StationCard from "./StationCard";
 
 export default function StationList({
   stations,
@@ -21,8 +10,7 @@ export default function StationList({
   stations: StationsList;
   triggerRef: RefObject<HTMLButtonElement | null>;
 }) {
-  const { setCoordinate, selectedStation, setSelectedStation } =
-    useMapContext();
+  const { setCoordinate, setSelectedStation } = useMapContext();
 
   return (
     <section className="h-[65dvh] overflow-y-scroll overflow-x-hidden">
@@ -54,23 +42,6 @@ export default function StationList({
           ))}
         </TableBody>
       </Table>
-      <Drawer direction="left">
-        <DrawerTrigger ref={triggerRef} className="hidden" />
-        <DrawerContent style={{ minWidth: "33.3%", overflowY: "auto" }}>
-          <DrawerHeader>
-            <DrawerTitle>{selectedStation?.stationName ?? ""}</DrawerTitle>
-            <DrawerDescription>
-              {selectedStation?.stationAddress ?? ""}
-            </DrawerDescription>
-          </DrawerHeader>
-          <StationCard stationId={selectedStation?.id ?? 0} />
-          <DrawerFooter>
-            <DrawerClose asChild className="cursor-pointer">
-              <button className="btn btn-primary">Close</button>
-            </DrawerClose>
-          </DrawerFooter>
-        </DrawerContent>
-      </Drawer>
     </section>
   );
 }
