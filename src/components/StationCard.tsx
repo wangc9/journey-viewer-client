@@ -20,7 +20,6 @@ export default function StationCard({ stationId }: StationCardProps) {
   });
 
   if (stationQuery.data !== undefined && "station_name" in stationQuery.data) {
-    console.log(destinationQuery.data);
     return (
       <section className="flex flex-col">
         <section className="flex flex-col gap-y-2 lg:grid lg:grid-cols-2 lg:gap-x-4 px-4">

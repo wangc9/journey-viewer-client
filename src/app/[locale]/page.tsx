@@ -1,6 +1,8 @@
 "use client";
 
+import JourneyDrawer from "@/components/JourneyDrawer";
 import JourneyListPage from "@/components/JourneyListPage";
+import StationDrawer from "@/components/StationDrawer";
 import StationListPage from "@/components/StationListPage";
 import { Button } from "@/components/ui/button";
 import dynamic from "next/dynamic";
@@ -12,6 +14,9 @@ export default function Home() {
     []
   );
   const triggerRef = useRef<HTMLButtonElement>(null);
+  const journeyTriggerRef = useRef<HTMLButtonElement>(null);
+  const stationCloseRef = useRef<HTMLButtonElement>(null);
+  const journeyCloseRef = useRef<HTMLButtonElement>(null);
   const [showStations, setShowStations] = useState<boolean>(true);
 
   return (
@@ -40,11 +45,16 @@ export default function Home() {
         {showStations ? (
           <StationListPage triggerRef={triggerRef} />
         ) : (
-          <JourneyListPage triggerRef={triggerRef} />
+          <JourneyListPage triggerRef={journeyTriggerRef} />
         )}
         {/* <StationListPage triggerRef={triggerRef} /> */}
+        <StationDrawer triggerRef={triggerRef} closeRef={stationCloseRef} />
+        <JourneyDrawer
+          triggerRef={journeyTriggerRef}
+          closeRef={journeyCloseRef}
+        />
       </section>
-      <Map triggerRef={triggerRef} />
+      <Map triggerRef={triggerRef} journeyCloseRef={journeyCloseRef} />
     </main>
   );
 }

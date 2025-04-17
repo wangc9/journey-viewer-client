@@ -15,7 +15,6 @@ export default function AppBar() {
   const pathname = usePathname();
   const t = useTranslations("AppBar");
 
-  console.log(pathname);
   return (
     <NavigationMenu className="w-screen px-8 py-2 sm:px-8 h-[5%] flex justify-between bg-amber-300">
       <NavigationMenuList>

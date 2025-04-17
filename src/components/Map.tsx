@@ -11,15 +11,27 @@ import { useMapContext } from "@/context/MapContext";
 
 export default function Map({
   triggerRef,
+  journeyCloseRef,
 }: {
   triggerRef: RefObject<HTMLButtonElement | null>;
+  journeyCloseRef: RefObject<HTMLButtonElement | null>;
 }) {
   const [icon, setIcon] = useState<L.Icon>();
-  const { setCoordinate, setSelectedStation } = useMapContext();
+  const [departureIcon, setDepartureIcon] = useState<L.Icon>();
+  const [destinationIcon, setDestinationIcon] = useState<L.Icon>();
+  const {
+    setCoordinate,
+    setSelectedStation,
+    setSelectedDepartureStation,
+    setSelectedDestinationStation,
+    selectedDepartureStation,
+    selectedDestinationStation,
+  } = useMapContext();
   const queryOptions = stationsOptions({
     skip: 0,
   });
   const { data: stations } = useSuspenseQuery(queryOptions);
+
   return (
     <div className="h-full">
       <MapContainer
@@ -31,7 +43,11 @@ export default function Map({
           attribution='&copy; <a href="https://www.digitransit.fi/en/developers/apis/6-terms-of-use/">Digitransit</a> contributors'
           url="https://cdn.digitransit.fi/map/v3/hsl-map/{z}/{x}/{y}@2x.png?digitransit-subscription-key=e272a3da0ede40f0bfe2b95083b33298"
         />
-        <MapEvents setIcon={setIcon} />
+        <MapEvents
+          setIcon={setIcon}
+          setDepartureIcon={setDepartureIcon}
+          setDestinationIcon={setDestinationIcon}
+        />
         {Array.isArray(stations) &&
           icon !== undefined &&
           stations.map((station) => (
@@ -44,6 +60,9 @@ export default function Map({
               icon={icon}
               eventHandlers={{
                 click: () => {
+                  setSelectedDepartureStation(null);
+                  setSelectedDestinationStation(null);
+                  journeyCloseRef.current?.click();
                   setCoordinate({
                     lat: station.coordinateY as string,
                     lng: station.coordinateX as string,
@@ -54,6 +73,48 @@ export default function Map({
               }}
             />
           ))}
+        {selectedDepartureStation && (
+          <Marker
+            key="departure-station"
+            position={[
+              parseFloat(selectedDepartureStation.coordinateY as string),
+              parseFloat(selectedDepartureStation.coordinateX as string),
+            ]}
+            icon={departureIcon}
+            eventHandlers={{
+              click: () => {
+                setCoordinate({
+                  lat: selectedDepartureStation.coordinateY as string,
+                  lng: selectedDepartureStation.coordinateX as string,
+                });
+                setSelectedStation(selectedDepartureStation);
+                journeyCloseRef.current?.click();
+                triggerRef.current?.click();
+              },
+            }}
+          />
+        )}
+        {selectedDestinationStation && (
+          <Marker
+            key="destination-station"
+            position={[
+              parseFloat(selectedDestinationStation.coordinateY as string),
+              parseFloat(selectedDestinationStation.coordinateX as string),
+            ]}
+            icon={destinationIcon}
+            eventHandlers={{
+              click: () => {
+                setCoordinate({
+                  lat: selectedDestinationStation.coordinateY as string,
+                  lng: selectedDestinationStation.coordinateX as string,
+                });
+                setSelectedStation(selectedDestinationStation);
+                journeyCloseRef.current?.click();
+                triggerRef.current?.click();
+              },
+            }}
+          />
+        )}
       </MapContainer>
     </div>
   );
