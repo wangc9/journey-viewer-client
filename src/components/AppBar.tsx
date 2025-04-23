@@ -16,7 +16,7 @@ export default function AppBar() {
   const t = useTranslations("AppBar");
 
   return (
-    <NavigationMenu className="w-screen px-8 py-2 sm:px-8 h-[5%] flex justify-between bg-amber-300">
+    <NavigationMenu className="flex h-[5%] w-screen justify-between bg-amber-300 px-8 py-2 sm:px-8">
       <NavigationMenuList>
         <NavigationMenuItem className="cursor-pointer">
           <NavigationMenuLink className={navigationMenuTriggerStyle()}>
@@ -25,8 +25,8 @@ export default function AppBar() {
                 className={`${
                   pathname.includes("/admin/")
                     ? ""
-                    : "underline underline-offset-2 decoration-2"
-                } font-semibold cursor-pointer`}
+                    : "underline decoration-2 underline-offset-2"
+                } cursor-pointer font-semibold`}
               >
                 {t("individual")}
               </p>
@@ -39,7 +39,7 @@ export default function AppBar() {
               <p
                 className={`${
                   pathname.includes("/admin/")
-                    ? "underline underline-offset-2 decoration-2"
+                    ? "underline decoration-2 underline-offset-2"
                     : ""
                 } font-semibold`}
               >
@@ -62,7 +62,7 @@ export default function AppBar() {
                 className={`${
                   pathname.includes("/fi")
                     ? ""
-                    : "underline underline-offset-2 decoration-2"
+                    : "underline decoration-2 underline-offset-2"
                 } font-semibold`}
               >
                 EN
@@ -81,7 +81,7 @@ export default function AppBar() {
               <p
                 className={`${
                   pathname.includes("/fi")
-                    ? "underline underline-offset-2 decoration-2"
+                    ? "underline decoration-2 underline-offset-2"
                     : ""
                 } font-semibold`}
               >

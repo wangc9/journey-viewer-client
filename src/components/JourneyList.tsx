@@ -17,13 +17,13 @@ export default function JourneyList({
   } = useMapContext();
 
   return (
-    <section className="h-[65dvh] overflow-y-scroll overflow-x-hidden">
+    <section className="h-[65dvh] overflow-x-hidden overflow-y-scroll">
       <Table>
         <TableBody>
           {journeys.map((journey) => (
             <TableRow key={journey.id}>
               <TableCell
-                className="flex flex-col gap-y-1 cursor-pointer"
+                className="flex cursor-pointer flex-col gap-y-1"
                 onClick={() => {
                   setSelectedDepartureStation(() => journey.departureStationId);
                   setSelectedDestinationStation(() => journey.returnStationId);
@@ -31,7 +31,7 @@ export default function JourneyList({
                   triggerRef.current?.click();
                 }}
               >
-                <span className="font-medium text-lg">
+                <span className="text-lg font-medium">
                   {journey.departureStationId
                     ? journey.departureStationId.stationName
                     : ""}

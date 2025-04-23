@@ -22,7 +22,7 @@ export default function StationCard({ stationId }: StationCardProps) {
   if (stationQuery.data !== undefined && "station_name" in stationQuery.data) {
     return (
       <section className="flex flex-col">
-        <section className="flex flex-col gap-y-2 lg:grid lg:grid-cols-2 lg:gap-x-4 px-4">
+        <section className="flex flex-col gap-y-2 px-4 lg:grid lg:grid-cols-2 lg:gap-x-4">
           <NumberCard
             title={t("start_count")}
             value={stationQuery.data.start_count}
@@ -48,7 +48,7 @@ export default function StationCard({ stationId }: StationCardProps) {
                   {destinationQuery.data.map((station) => (
                     <TableRow key={station.id}>
                       <TableCell
-                        className="grid grid-cols-2 cursor-pointer"
+                        className="grid cursor-pointer grid-cols-2"
                         // onClick={() => {
                         //   setCoordinate(() => {
                         //     return {
@@ -61,14 +61,14 @@ export default function StationCard({ stationId }: StationCardProps) {
                         // }}
                       >
                         <article className="flex flex-col gap-y-1">
-                          <span className="font-medium text-lg">
+                          <span className="text-lg font-medium">
                             {station.station_name ?? ""}
                           </span>
                           <span className="font-light text-gray-600">
                             {station.station_address ?? ""}
                           </span>
                         </article>
-                        <span className="font-semibold text-lg text-center self-center">
+                        <span className="self-center text-center text-lg font-semibold">
                           {station.journey_count ?? ""}
                         </span>
                       </TableCell>

@@ -44,7 +44,7 @@ export default async function RootLayout({
     <html lang={locale}>
       <ReactScan />
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col items-stretch overflow-hidden`}
+        className={`${geistSans.variable} ${geistMono.variable} flex flex-col items-stretch overflow-hidden antialiased`}
       >
         <NextIntlClientProvider>
           <Providers>

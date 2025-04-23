@@ -13,13 +13,13 @@ export default function StationList({
   const { setCoordinate, setSelectedStation } = useMapContext();
 
   return (
-    <section className="h-[65dvh] overflow-y-scroll overflow-x-hidden">
+    <section className="h-[65dvh] overflow-x-hidden overflow-y-scroll">
       <Table>
         <TableBody>
           {stations.map((station) => (
             <TableRow key={station.id}>
               <TableCell
-                className="flex flex-col gap-y-1 cursor-pointer"
+                className="flex cursor-pointer flex-col gap-y-1"
                 onClick={() => {
                   setCoordinate(() => {
                     return {
@@ -31,7 +31,7 @@ export default function StationList({
                   triggerRef.current?.click();
                 }}
               >
-                <span className="font-medium text-lg">
+                <span className="text-lg font-medium">
                   {station.stationName ?? ""}
                 </span>
                 <span className="font-light text-gray-600">

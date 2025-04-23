@@ -34,7 +34,7 @@ export default function JourneyListPage(props: JourneysQueryInput) {
   }
 
   return (
-    <section className="w-full px-8 py-8 flex flex-col gap-y-4">
+    <section className="flex w-full flex-col gap-y-4 px-8 py-8">
       <article className="flex justify-between">
         <h1 className="text-2xl font-semibold">{t("journeys")}</h1>
         <JourneyDropDown />

@@ -25,7 +25,7 @@ export default function StationDropDown() {
           {t("order")}
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-full sm:w-56 bg-white z-50 overflow-y-auto overflow-x-hidden">
+      <DropdownMenuContent className="z-50 w-full overflow-x-hidden overflow-y-auto bg-white sm:w-56">
         <DropdownMenuLabel>{t("id")}</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuCheckboxItem

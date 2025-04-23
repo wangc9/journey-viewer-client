@@ -11,7 +11,7 @@ import { useMemo, useRef, useState } from "react";
 export default function Home() {
   const Map = useMemo(
     () => dynamic(() => import("@/components/Map"), { ssr: false }),
-    []
+    [],
   );
   const triggerRef = useRef<HTMLButtonElement>(null);
   const journeyTriggerRef = useRef<HTMLButtonElement>(null);
@@ -47,7 +47,6 @@ export default function Home() {
         ) : (
           <JourneyListPage triggerRef={journeyTriggerRef} />
         )}
-        {/* <StationListPage triggerRef={triggerRef} /> */}
         <StationDrawer triggerRef={triggerRef} closeRef={stationCloseRef} />
         <JourneyDrawer
           triggerRef={journeyTriggerRef}

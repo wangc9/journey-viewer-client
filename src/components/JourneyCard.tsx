@@ -43,11 +43,11 @@ export default function JourneyCard({ journey }: JourneyCardProps) {
             <ChevronsDown />
           </p>
           <article className="col-start-3 flex flex-col gap-y-2">
-            <article className="flex gap-x-2 items-center">
+            <article className="flex items-center gap-x-2">
               <Ruler />
               <p className="text-sm text-gray-500">{journey.distance} m</p>
             </article>
-            <article className="flex gap-x-2 items-center">
+            <article className="flex items-center gap-x-2">
               <Hourglass />
               <p className="text-sm text-gray-500">
                 {journey.duration ? secondsToTime(journey.duration) : ""}
