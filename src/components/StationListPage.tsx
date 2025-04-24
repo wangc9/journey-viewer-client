@@ -1,8 +1,17 @@
 "use client";
 
-import { useSuspenseQuery } from "@tanstack/react-query";
+import {
+  useMutation,
+  useQuery,
+  useQueryClient,
+  useSuspenseQuery,
+} from "@tanstack/react-query";
 import StationList from "./StationList";
-import { countStationOptions, stationsOptions } from "@/utils/queries/stations";
+import {
+  countStationOptions,
+  savedStationOptions,
+  stationsOptions,
+} from "@/utils/queries/stations";
 import { useTranslations } from "next-intl";
 import DynamicPagination from "./DynamicPagination";
 import { useState } from "react";
@@ -10,10 +19,19 @@ import { StationsQueryInput } from "@/types/stations";
 import { Order } from "@/types/utils";
 import StationDropDown from "./StationDropDown";
 import { useMapContext } from "@/context/MapContext";
+import { updateSavedStations } from "@/utils/mutations/user";
 
 export default function StationListPage(props: StationsQueryInput) {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const { id, name, address, x, y } = useMapContext();
+  const queryClient = useQueryClient();
+
+  const mutation = useMutation({
+    mutationFn: updateSavedStations,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["savedStations"] });
+    },
+  });
 
   const { triggerRef } = props;
   const queryOptions = stationsOptions({
@@ -28,6 +46,8 @@ export default function StationListPage(props: StationsQueryInput) {
   });
   const { data: stations } = useSuspenseQuery(queryOptions);
   const { data: count } = useSuspenseQuery(countStationOptions);
+  const { data: savedStations } = useQuery(savedStationOptions);
+
   const t = useTranslations("StationList");
 
   if (!Array.isArray(stations)) {
@@ -40,7 +60,12 @@ export default function StationListPage(props: StationsQueryInput) {
         <h1 className="text-2xl font-semibold">{t("stations")}</h1>
         <StationDropDown />
       </article>
-      <StationList stations={stations} triggerRef={triggerRef} />
+      <StationList
+        stations={stations}
+        triggerRef={triggerRef}
+        savedStations={savedStations}
+        mutation={mutation}
+      />
       <DynamicPagination
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}

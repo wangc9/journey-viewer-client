@@ -21,3 +21,9 @@ type CustomError = {
   timestamp: string;
   path: string;
 };
+
+type SavedStation = {
+  id: number;
+  stationId: numnber;
+  synced: boolean;
+};

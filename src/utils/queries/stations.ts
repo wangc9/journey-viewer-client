@@ -6,6 +6,7 @@ import {
 } from "@/types/stations";
 import { CustomError } from "@/types/utils";
 import { queryOptions } from "@tanstack/react-query";
+import { db } from "../indexDB/db";
 
 export const stationsOptions = ({
   skip = 0,
@@ -28,7 +29,7 @@ export const stationsOptions = ({
             address ? `&address=${address}` : ""
           }${x ? `&x=${x}` : ""}${y ? `&y=${y}` : ""}${
             search ? `&search=${search}` : ""
-          }`
+          }`,
         );
         const data: StationsList | CustomError = await res.json();
         return data;
@@ -46,7 +47,7 @@ export const stationOptions = ({ id }: { id: number }) => {
     queryFn: async () => {
       try {
         const res = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/stations/${id}`
+          `${process.env.NEXT_PUBLIC_API_URL}/stations/${id}`,
         );
         const data:
           | {
@@ -71,7 +72,7 @@ export const countStationOptions = queryOptions({
   queryFn: async () => {
     try {
       const result = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/stations/count`
+        `${process.env.NEXT_PUBLIC_API_URL}/stations/count`,
       );
 
       const data: { count: number } = await result.json();
@@ -101,7 +102,7 @@ export const destinationsOptions = ({
             take ? `&take=${take}` : ""
           }${startDate ? `&startDate=${startDate}` : ""}${
             endDate ? `&endDate=${endDate}` : ""
-          }`
+          }`,
         );
         const data: Array<StationWithCount> | CustomError = await res.json();
         return data;
@@ -112,3 +113,23 @@ export const destinationsOptions = ({
     },
   });
 };
+
+export const savedStationOptions = queryOptions({
+  queryKey: ["savedStations"],
+  queryFn: async () => {
+    if (typeof window === "undefined") {
+      // Log a warning or handle the case where IndexedDB is not available
+      console.warn("IndexedDB is not available. Skipping updateSavedStations.");
+      // You might want to throw an error or return a specific state
+      // depending on how your mutationFn handles errors
+      return Promise.reject(new Error("IndexedDB not available"));
+    }
+    try {
+      const res = await db.stations.toArray();
+
+      return res;
+    } catch (error) {
+      console.log(error);
+    }
+  },
+});
