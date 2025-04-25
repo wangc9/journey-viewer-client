@@ -1,5 +1,6 @@
 import {
   DestinationsQueryInput,
+  StationJourneyCountByMonth,
   StationsList,
   StationsQueryInput,
   StationWithCount,
@@ -59,6 +60,32 @@ export const stationOptions = ({ id }: { id: number }) => {
               return_average: string;
             }
           | CustomError = await res.json();
+        return data;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+  });
+};
+
+export const stationJourneyCountByMonthOptions = ({
+  id,
+  monthStart,
+  monthEnd,
+}: {
+  id: number;
+  monthStart?: string;
+  monthEnd?: string;
+}) => {
+  return queryOptions({
+    queryKey: ["stationJourneyCountByMonth", { id, monthStart, monthEnd }],
+    queryFn: async () => {
+      try {
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_API_URL}/stations/${id}/journey-count${monthStart ? `?monthStart=${monthStart}` : ""}${monthEnd ? (monthStart ? `&monthEnd=${monthEnd}` : `?monthEnd=${monthEnd}`) : ""}`,
+        );
+        const data: Array<StationJourneyCountByMonth> | CustomError =
+          await res.json();
         return data;
       } catch (error) {
         console.log(error);

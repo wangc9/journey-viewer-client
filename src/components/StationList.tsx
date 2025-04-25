@@ -2,7 +2,7 @@
 
 import { useMapContext } from "@/context/MapContext";
 import { Table, TableBody, TableCell, TableRow } from "./ui/table";
-import { RefObject, useEffect } from "react";
+import { RefObject } from "react";
 import { StationsList } from "@/types/stations";
 import { Button } from "./ui/button";
 import { SavedStation } from "@/types/utils";
@@ -30,10 +30,6 @@ export default function StationList({
   >;
 }) {
   const { setCoordinate, setSelectedStation } = useMapContext();
-
-  useEffect(() => {
-    console.log(savedStations);
-  }, [savedStations]);
 
   return (
     <section className="h-[65dvh] overflow-x-hidden overflow-y-scroll">
