@@ -33,7 +33,7 @@ export default function AppBar() {
             </Link>
           </NavigationMenuLink>
         </NavigationMenuItem>
-        <NavigationMenuItem className="cursor-pointer">
+        {/* <NavigationMenuItem className="cursor-pointer">
           <NavigationMenuLink className={navigationMenuTriggerStyle()}>
             <Link href="/admin" legacyBehavior passHref>
               <p
@@ -47,7 +47,7 @@ export default function AppBar() {
               </p>
             </Link>
           </NavigationMenuLink>
-        </NavigationMenuItem>
+        </NavigationMenuItem> */}
       </NavigationMenuList>
       <NavigationMenuList>
         <NavigationMenuItem className="cursor-pointer">
