@@ -23,7 +23,7 @@ export default function AppBar() {
             <Link href="/" legacyBehavior passHref>
               <p
                 className={`${
-                  pathname.includes("/admin/")
+                  pathname.includes("/admin")
                     ? ""
                     : "underline decoration-2 underline-offset-2"
                 } cursor-pointer font-semibold`}
@@ -38,7 +38,7 @@ export default function AppBar() {
             <Link href="/admin" legacyBehavior passHref>
               <p
                 className={`${
-                  pathname.includes("/admin/")
+                  pathname.includes("/admin")
                     ? "underline decoration-2 underline-offset-2"
                     : ""
                 } font-semibold`}
