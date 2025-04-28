@@ -1,36 +1,36 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## Description
 
-## Getting Started
+This is the client section of a full-stack project visualising bicycle usage around the Helsinki Metropolitan Area. The data used for this project is owned by **City Bike Finland**. The [dataset](https://opendata.arcgis.com/datasets/726277c507ef4914b0aec3cbcfcbfafc_0.csv) for the city bike stations is provided by [HSL](https://www.hsl.fi/en/hsl) under [this license](https://www.avoindata.fi/data/en/dataset/hsl-n-kaupunkipyoraasemat/resource/a23eef3a-cc40-4608-8aa2-c730d17e8902).
 
-First, run the development server:
+You can access the live version of this project [here](https://journey-viewer-client.vercel.app/en).
+
+## Project setup
+
+This project has been developed and tested under Node.js 22.
+
+For the client setup, use the following command:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+yarn install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Compile and run the project
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Before starting the client, make sure that the server is up and running. You can find the server repository along with its setup instructions [here](https://github.com/wangc9/journey-viewer-server).
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+After you have successfully configured the server, you can start the client by running the following command:
 
-## Learn More
+```bash
+# development
+$ yarn run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+Once both the server and the client are spinning successfully, you can access the website through [http://localhost:3001](http://localhost:3001)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Stay in touch
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Author - [Chen Wang](https://www.linkedin.com/in/msc-chen-wang/)
 
-## Deploy on Vercel
+## License
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project uses Next, which is [MIT licensed](https://github.com/vercel/next.js/blob/canary/license.md).
