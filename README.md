@@ -2,7 +2,7 @@
 
 This is the client section of a full-stack project visualising bicycle usage around the Helsinki Metropolitan Area. The data used for this project is owned by **City Bike Finland**. The [dataset](https://opendata.arcgis.com/datasets/726277c507ef4914b0aec3cbcfcbfafc_0.csv) for the city bike stations is provided by [HSL](https://www.hsl.fi/en/hsl) under [this license](https://www.avoindata.fi/data/en/dataset/hsl-n-kaupunkipyoraasemat/resource/a23eef3a-cc40-4608-8aa2-c730d17e8902).
 
-You can access the live version of this project [here](https://journey-viewer-client.vercel.app/en).
+You can access the live version of this project [here](https://journey-viewer-client.vercel.app/en). **Important**: The live version of the server is running on a free-tier server, therefore it could take **up to 3 minutes** for the server to respond to the first request.
 
 ## Project setup
 
