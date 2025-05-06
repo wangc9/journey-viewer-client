@@ -10,7 +10,11 @@
     "start_count": "Journeys started",
     "end_count": "Journeys ended",
     "start_average": "Average distance started from here",
-    "end_average": "Average distance ended here"
+    "end_average": "Average distance ended here",
+    "popular_destinations": "Popular destinations"
+  },
+  "StationDrawer": {
+    "journey_count_chart": "Departing and arriving journeys by month"
   },
   "DropDown": {
     "order": "Order by",

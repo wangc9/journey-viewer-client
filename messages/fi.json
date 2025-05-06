@@ -10,7 +10,11 @@
     "start_count": "Matkoja aloitettu",
     "end_count": "Matkoja lopetettu",
     "start_average": "Keskimääräinen aloitusetäisyys täältä",
-    "end_average": "Keskimääräinen lopetusetäisyys täällä"
+    "end_average": "Keskimääräinen lopetusetäisyys täällä",
+    "popular_destinations": "Suositut määränpäät"
+  },
+  "StationDrawer": {
+    "journey_count_chart": "Lähteneet ja saapuneet matkat kuukausittain"
   },
   "DropDown": {
     "order": "Järjestä mukaan",
