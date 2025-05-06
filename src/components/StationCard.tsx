@@ -40,10 +40,12 @@ export default function StationCard({ stationId }: StationCardProps) {
           <NumberCard
             title={t("start_average")}
             value={parseFloat(stationQuery.data.start_average).toFixed(2)}
+            unit="m"
           />
           <NumberCard
             title={t("start_average")}
             value={parseFloat(stationQuery.data.return_average).toFixed(2)}
+            unit="m"
           />
         </section>
         {destinationQuery.data !== undefined &&

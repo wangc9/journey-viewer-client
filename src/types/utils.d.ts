@@ -9,6 +9,7 @@ type PaginationProps = {
 type NumberCardProps = {
   title: string;
   value: string;
+  unit?: string;
 };
 
 type Order = "ASC" | "DESC";
