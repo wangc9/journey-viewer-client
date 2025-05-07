@@ -14,7 +14,8 @@
     "popular_destinations": "Suositut määränpäät"
   },
   "StationDrawer": {
-    "journey_count_chart": "Lähteneet ja saapuneet matkat kuukausittain"
+    "journey_count_chart": "Lähteneet ja saapuneet matkat kuukausittain",
+    "percentage_tooltip": "Tämä on niiden paluumatkojen prosenttiosuus, joissa matkan kesto ja paluuaika eivät täsmää. Tämä voi johtua viallisesta pyörästä tai asemasta."
   },
   "DropDown": {
     "order": "Järjestä mukaan",

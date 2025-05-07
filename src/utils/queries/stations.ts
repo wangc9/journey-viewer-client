@@ -1,5 +1,6 @@
 import {
   DestinationsQueryInput,
+  SingleStationQueryData,
   StationJourneyCountByMonth,
   StationsList,
   StationsQueryInput,
@@ -50,16 +51,7 @@ export const stationOptions = ({ id }: { id: number }) => {
         const res = await fetch(
           `${process.env.NEXT_PUBLIC_API_URL}/stations/${id}`,
         );
-        const data:
-          | {
-              station_name: string;
-              station_address: string;
-              start_count: string;
-              return_count: string;
-              start_average: string;
-              return_average: string;
-            }
-          | CustomError = await res.json();
+        const data: SingleStationQueryData | CustomError = await res.json();
         return data;
       } catch (error) {
         console.log(error);

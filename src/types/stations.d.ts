@@ -20,10 +20,21 @@ type Station = {
   coordinateY?: string;
 };
 
+type SingleStationQueryData = {
+  station_name: string;
+  station_address: string;
+  start_count: string;
+  return_count: string;
+  start_average: string;
+  return_average: string;
+  percentage: string;
+};
+
 type StationsList = Array<Station>;
 
 type StationCardProps = {
-  stationId: number;
+  station: SingleStationQueryData;
+  count: StationWithCount[];
 };
 
 type DestinationsQueryInput = {

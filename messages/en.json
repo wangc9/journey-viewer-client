@@ -14,7 +14,8 @@
     "popular_destinations": "Popular destinations"
   },
   "StationDrawer": {
-    "journey_count_chart": "Departing and arriving journeys by month"
+    "journey_count_chart": "Departing and arriving journeys by month",
+    "percentage_tooltip": "This is the percentage of returned journeys that have a mismatch between their duration and the time of return. This could be caused due to faulty bicycle or station."
   },
   "DropDown": {
     "order": "Order by",
