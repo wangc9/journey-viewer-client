@@ -5,6 +5,7 @@ import { getQueryClient } from "./getQueryClient";
 import { ReactNode } from "react";
 import { MapProvider } from "@/context/MapContext";
 import { PostHogProvider } from "./PostHogProvider";
+import { SessionProvider } from "next-auth/react";
 
 export default function Providers({ children }: { children: ReactNode }) {
   const queryClient = getQueryClient();
@@ -12,10 +13,12 @@ export default function Providers({ children }: { children: ReactNode }) {
   return (
     <PostHogProvider>
       <QueryClientProvider client={queryClient}>
-        <MapProvider>
-          {children}
-          <ReactQueryDevtools />
-        </MapProvider>
+        <SessionProvider>
+          <MapProvider>
+            {children}
+            <ReactQueryDevtools />
+          </MapProvider>
+        </SessionProvider>
       </QueryClientProvider>
     </PostHogProvider>
   );
