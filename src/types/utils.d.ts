@@ -28,3 +28,8 @@ type SavedStation = {
   stationId: numnber;
   synced: boolean;
 };
+
+type UnauthorisedError = {
+  statusCode: number;
+  message: string;
+};
