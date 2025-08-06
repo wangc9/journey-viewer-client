@@ -7,15 +7,15 @@ const nextConfig: NextConfig = {
   async rewrites() {
     return [
       {
-        source: "/relay-SaGx/static/:path*",
+        source: "/:locale*/relay-SaGx/static/:path*",
         destination: "https://eu-assets.i.posthog.com/static/:path*",
       },
       {
-        source: "/relay-SaGx/:path*",
+        source: "/:locale*/relay-SaGx/:path*",
         destination: "https://eu.i.posthog.com/:path*",
       },
       {
-        source: "/relay-SaGx/flags",
+        source: "/:locale*/relay-SaGx/flags",
         destination: "https://eu.i.posthog.com/flags",
       },
     ];
